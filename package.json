@@ -1,0 +1,23 @@
+{
+  "name": "psadmin",
+  "version": "1.0.0",
+  "description": "Pluralsight training course for React and Flux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pluralsight",
+    "training",
+    "react",
+    "flux",
+    "gulp"
+  ],
+  "author": "Tim Hacker",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-open": "^1.0.0"
+  }
+}
