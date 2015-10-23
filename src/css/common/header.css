@@ -1,5 +1,9 @@
 .navbar_site-logo
 {
   width: 120px;
-  border-radius: 10px;
+}
+
+:fullscreen a {
+   display: flex;
+  color: #f7ff10
 }

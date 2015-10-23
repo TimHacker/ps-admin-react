@@ -10,6 +10,10 @@ var concat = require('gulp-concat'); // Use conventional text streams with Gulp
 var eslint = require('gulp-eslint'); // Lints our JS
 var imagemin = require('gulp-imagemin'); //Minifies our images
 var pngquant = require('imagemin-pngquant'); //pngquant for image minification
+var postcss = require('gulp-postcss'); //Run rules over our CSS
+var autoprefixer = require('autoprefixer'); //Add prefixes to CSS for older browsers
+var sourcemaps   = require('gulp-sourcemaps'); //Sourcemaps for tracking original line numbers etc
+var stylelint = require("stylelint") //Linting for CSS
 
 var config = {
   port: 9005,
@@ -67,8 +71,17 @@ gulp.task('lint', function() {
 });
 
 gulp.task('css', function() {
+  
+  var processors = [
+    autoprefixer({browsers: ['last 2 versions']}),
+    stylelint()
+  ]
+  
   gulp.src(config.paths.css)
+    .pipe(sourcemaps.init())
+    .pipe(postcss(processors))
     .pipe(concat('bundle.css'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.paths.dist + '/css'))
     .pipe(gulpConnect.reload());
 });
