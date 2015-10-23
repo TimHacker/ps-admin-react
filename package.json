@@ -31,6 +31,7 @@
     "imagemin-pngquant": "^4.2.0",
     "jquery": "^2.1.4",
     "react": "^0.14.0",
+    "react-dom": "^0.14.0",
     "reactify": "^1.1.1",
     "stylelint": "^2.0.0",
     "vinyl-source-stream": "^1.1.0"

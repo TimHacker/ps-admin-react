@@ -1,6 +1,7 @@
 /* global $:true, jQuery:true */
 $ = jQuery = require('jquery');
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Home = require('./components/homePage.jsx');
 var About = require('./components/about/aboutPage.jsx');
 var Header = require('./components/common/header.jsx');
@@ -25,7 +26,7 @@ var App = React.createClass({
 
 function render() {
 	var route = window.location.hash.substr(1);
-	React.render(<App route={route} />, document.getElementById('app'));
+	ReactDOM.render(<App route={route} />, document.getElementById('app'));
 }
 
 window.addEventListener('hashchange', render);
