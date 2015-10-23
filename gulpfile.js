@@ -8,6 +8,8 @@ var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
 var concat = require('gulp-concat'); // Use conventional text streams with Gulp
 var eslint = require('gulp-eslint'); // Lints our JS
+var imagemin = require('gulp-imagemin'); //Minifies our images
+var pngquant = require('imagemin-pngquant'); //pngquant for image minification
 
 var config = {
   port: 9005,
@@ -15,6 +17,7 @@ var config = {
   paths: {
     html: './src/*.html',
     js: ['./src/**/*.js','./src/**/*.jsx'],
+    images: './src/images/*',
     css: [
       'node_modules/bootstrap/dist/css/bootstrap.min.css',
       'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
@@ -68,9 +71,23 @@ gulp.task('css', function() {
     .pipe(gulp.dest(config.paths.dist + '/css'));
 });
 
+gulp.task('images', function() {
+  gulp.src(config.paths.images)
+    .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()]
+    }))
+    .pipe(gulp.dest(config.paths.dist + '/images'))
+    .pipe(gulpConnect.reload());
+
+  gulp.src('./src/favicon.ico')
+    .pipe(gulp.dest(config.paths.dist));
+})
+
 gulp.task('watch', function() {
   gulp.watch(config.paths.html, ['html']);
   gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
-gulp.task('default', ['html', 'js', 'lint', 'css', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'lint', 'css', 'images', 'open', 'watch']);
