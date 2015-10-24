@@ -23,9 +23,11 @@ var config = {
     js: ['./src/**/*.+(js|jsx)'],
     images: './src/images/*',
     css: [
-      'node_modules/bootstrap/dist/css/bootstrap.min.css',
-      'node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
       './src/**/*.css'
+    ],
+    vendorCss: [
+      'node_modules/bootstrap/dist/css/bootstrap.min.css',
+      'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
     ],
     dist: './dist',
     mainJs: './src/main.jsx'
@@ -70,6 +72,12 @@ gulp.task('lint', function() {
     .pipe(eslint.format());
 });
 
+gulp.task('library-css', function() {
+  gulp.src(config.paths.vendorCss)
+    .pipe(concat('library-bundle.css'))
+    .pipe(gulp.dest(config.paths.dist + '/css'))
+});
+
 gulp.task('css', function() {
   var processors = [
     autoprefixer({browsers: ['last 2 versions']}),
@@ -105,4 +113,4 @@ gulp.task('watch', function() {
   gulp.watch(config.paths.css, ['css']);
 });
 
-gulp.task('default', ['html', 'js', 'lint', 'css', 'images', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'lint', 'css', 'library-css', 'images', 'open', 'watch']);
