@@ -14,6 +14,8 @@ var postcss = require('gulp-postcss'); //Run rules over our CSS
 var autoprefixer = require('autoprefixer'); //Add prefixes to CSS for older browsers
 var sourcemaps   = require('gulp-sourcemaps'); //Sourcemaps for tracking original line numbers etc
 var stylelint = require("stylelint") //Linting for CSS
+var mqpacker = require('css-mqpacker'); //Combine all matching media queries in CSS
+var cssnano = require('cssnano'); //Minify and optimise CSS
 
 var config = {
   port: 9005,
@@ -81,7 +83,9 @@ gulp.task('library-css', function() {
 gulp.task('css', function() {
   var processors = [
     autoprefixer({browsers: ['last 2 versions']}),
-    stylelint()
+    stylelint,
+    mqpacker,
+    cssnano
   ];
 
   gulp.src(config.paths.css)
