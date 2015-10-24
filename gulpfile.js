@@ -82,8 +82,8 @@ gulp.task('library-css', function() {
 
 gulp.task('css', function() {
   var processors = [
-    autoprefixer({browsers: ['last 2 versions']}),
     stylelint,
+    autoprefixer({browsers: ['last 2 versions']}),
     mqpacker,
     cssnano
   ];
