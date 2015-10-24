@@ -12,6 +12,7 @@ var concat = require('gulp-concat'); //Concatenate our files with Gulp
 var eslint = require('gulp-eslint'); //Lints our JS
 var imagemin = require('gulp-imagemin'); //Minifies our images
 var pngquant = require('imagemin-pngquant'); //pngquant for image minification
+var cache = require('gulp-cache'); //Cache our minified images
 var postcss = require('gulp-postcss'); //Run rules over our CSS
 var autoprefixer = require('autoprefixer'); //Add prefixes to CSS for older browsers
 var sourcemaps   = require('gulp-sourcemaps'); //Sourcemaps for tracking original line numbers etc
@@ -107,11 +108,11 @@ gulp.task('css', function() {
 
 gulp.task('images', function() {
   gulp.src(config.paths.images)
-    .pipe(imagemin({
+    .pipe(cache(imagemin({
             progressive: true,
             svgoPlugins: [{removeViewBox: false}],
             use: [pngquant()]
-    }))
+    })))
     .pipe(gulp.dest(config.paths.dist + '/images'))
     .pipe(gulpConnect.reload());
 
