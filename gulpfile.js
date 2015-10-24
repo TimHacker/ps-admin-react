@@ -20,7 +20,7 @@ var config = {
   developmentBaseUrl: 'http://localhost',
   paths: {
     html: './src/*.html',
-    js: ['./src/**/*.js','./src/**/*.jsx'],
+    js: ['./src/**/*.+(js|jsx)'],
     images: './src/images/*',
     css: [
       'node_modules/bootstrap/dist/css/bootstrap.min.css',
@@ -71,12 +71,11 @@ gulp.task('lint', function() {
 });
 
 gulp.task('css', function() {
-  
   var processors = [
     autoprefixer({browsers: ['last 2 versions']}),
     stylelint()
-  ]
-  
+  ];
+
   gulp.src(config.paths.css)
     .pipe(sourcemaps.init())
     .pipe(postcss(processors))
