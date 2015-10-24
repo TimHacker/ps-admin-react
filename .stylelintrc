@@ -4,6 +4,7 @@
     "declaration-colon-space-after": [1, "always"],
     "indentation": [2, 2, {
       "except": ["value"]
-    }]
+    }],
+    "rule-trailing-semicolon": [1, "always"]
   }
 }

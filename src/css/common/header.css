@@ -1,6 +1,7 @@
 .navbar_site-logo
 {
-  width: 120px;
+  width:120px;
+  margin:0px;
 }
 
 :fullscreen a {

@@ -3,11 +3,13 @@
 var gulp = require('gulp');
 var gulpConnect = require('gulp-connect'); //Runs a local dev server
 var open = require('gulp-open'); //Open a URL in a web browser
-var browserify = require('browserify'); // Bundles JS
-var reactify = require('reactify'); // Transforms React JSX to JS
-var source = require('vinyl-source-stream'); // Use conventional text streams with Gulp
-var concat = require('gulp-concat'); // Use conventional text streams with Gulp
-var eslint = require('gulp-eslint'); // Lints our JS
+var browserify = require('browserify'); //Bundles JS
+var uglify = require('gulp-uglify'); //Minifies our JS
+var reactify = require('reactify'); //Transforms React JSX to JS
+var source = require('vinyl-source-stream'); //Use conventional text streams with Gulp
+var buffer = require('vinyl-buffer'); //To convert to buffer to user Browserify with Uglify
+var concat = require('gulp-concat'); //Concatenate our files with Gulp
+var eslint = require('gulp-eslint'); //Lints our JS
 var imagemin = require('gulp-imagemin'); //Minifies our images
 var pngquant = require('imagemin-pngquant'); //pngquant for image minification
 var postcss = require('gulp-postcss'); //Run rules over our CSS
@@ -65,6 +67,10 @@ gulp.task('js', function() {
     .bundle()
     .on('error', console.error.bind(console))
     .pipe(source('bundle.js'))
+    .pipe(buffer()) //To work with Vinyl stream: https://wehavefaces.net/gulp-browserify-the-gulp-y-way-bb359b3f9623#.pi2bd7i1t
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify()) // sourcemaps and uglify from https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.paths.dist + '/scripts'))
     .pipe(gulpConnect.reload());
 });
