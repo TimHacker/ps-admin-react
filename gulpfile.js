@@ -92,7 +92,7 @@ gulp.task('library-css', function() {
 gulp.task('css', function() {
   var processors = [
     stylelint,
-    bemLinter(),
+    bemLinter('bem'),
     autoprefixer({browsers: ['last 2 versions']}),
     mqpacker,
     cssnano,

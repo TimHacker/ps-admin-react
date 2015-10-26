@@ -1,7 +1,14 @@
+/** @define navbar */
+
 .navbar_site-logo
 {
   width:120px;
   margin:0px;
+}
+
+.navbarLink
+{
+  width:120px;
 }
 
 :fullscreen a {
