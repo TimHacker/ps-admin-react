@@ -1,3 +1,4 @@
+/* eslint strict:0 */
 /* global $:true, jQuery:true */
 $ = jQuery = require('jquery');
 var React = require('react');
@@ -22,7 +23,7 @@ var App = React.createClass({
 				<Header/>
 				<Child/>
 			</div>
-		)
+		);
 	}
 });
 
