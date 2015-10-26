@@ -1,5 +1,7 @@
 /** @define navbar */
 
+$width: 120px;
+
 .navbar__site-logo {
-  width: 120px;
+  width: $width;
 }

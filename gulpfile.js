@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var gulpConnect = require('gulp-connect'); //Runs a local dev server
+var browserSync = require('browser-sync').create(); // Local webserver to watch files
 var open = require('gulp-open'); //Open a URL in a web browser
 var browserify = require('browserify'); //Bundles JS
 var uglify = require('gulp-uglify'); //Minifies our JS
@@ -14,6 +15,8 @@ var imagemin = require('gulp-imagemin'); //Minifies our images
 var pngquant = require('imagemin-pngquant'); //pngquant for image minification
 var cache = require('gulp-cache'); //Cache our minified images
 var postcss = require('gulp-postcss'); //Run rules over our CSS
+var atImport = require("postcss-import") //Support PostCSS @import-style partials
+var simpleVariables = require("postcss-simple-vars") //Support Sass-style variables
 var autoprefixer = require('autoprefixer'); //Add prefixes to CSS for older browsers
 var sourcemaps   = require('gulp-sourcemaps'); //Sourcemaps for tracking original line numbers etc
 var stylelint = require("stylelint") //Linting for CSS
@@ -49,6 +52,15 @@ gulp.task('connect', function() {
     base: config.developmentBaseUrl,
     livereload: true
   });
+});
+
+// Static server
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        server: {
+            baseDir: "./dist"
+        }
+    });
 });
 
 gulp.task('open', ['connect'], function() {
@@ -93,6 +105,8 @@ gulp.task('css', function() {
   var processors = [
     stylelint,
     bemLinter('bem'),
+    atImport,
+    simpleVariables,
     autoprefixer({browsers: ['last 2 versions']}),
     mqpacker,
     cssnano,
