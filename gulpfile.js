@@ -20,6 +20,7 @@ var stylelint = require("stylelint") //Linting for CSS
 var mqpacker = require('css-mqpacker'); //Combine all matching media queries in CSS
 var cssnano = require('cssnano'); //Minify and optimise CSS
 var reporter = require('postcss-reporter'); //Formats and prints warnings from PostCSS plugins
+var bemLinter = require('postcss-bem-linter'); //BEM linting for CSS
 
 var config = {
   port: 9005,
@@ -91,6 +92,7 @@ gulp.task('library-css', function() {
 gulp.task('css', function() {
   var processors = [
     stylelint,
+    bemLinter(),
     autoprefixer({browsers: ['last 2 versions']}),
     mqpacker,
     cssnano,
