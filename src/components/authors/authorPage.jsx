@@ -27,8 +27,10 @@ var Authors = React.createClass({
         <h1>Authors</h1>
         <table className="table">
           <thead>
-            <th>ID</th>
-            <th>Name</th>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+            </tr>
           </thead>
           <tbody>
             {this.state.authors.map(createAuthorRow, this)}
