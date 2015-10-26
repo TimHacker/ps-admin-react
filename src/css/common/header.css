@@ -1,17 +1,5 @@
 /** @define navbar */
 
-.navbar_site-logo
-{
-  width:120px;
-  margin:0px;
-}
-
-.navbarLink
-{
-  width:120px;
-}
-
-:fullscreen a {
-     display: flex;
-  color: #f7fh10
+.navbar__site-logo {
+  width: 120px;
 }
