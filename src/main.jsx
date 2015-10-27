@@ -5,10 +5,12 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
 
-var Home = require('./components/homePage.jsx');
-var Authors = require('./components/authors/authorPage.jsx');
-var About = require('./components/about/aboutPage.jsx');
+var HomePage = require('./components/homePage.jsx');
+var AuthorPage = require('./components/authors/authorPage.jsx');
+var AuthorDetails = require('./components/authors/authorDetails.jsx');
+var AboutPage = require('./components/about/aboutPage.jsx');
 var Header = require('./components/common/header.jsx');
 
 var App = React.createClass({
@@ -26,11 +28,12 @@ var App = React.createClass({
 ReactDOM.render((
   <Router>
     <Route path="/" component={App}>
-      <Route path="about" component={About}/>
-      <Route path="authors" component={Authors}>
-        <Route path="/authors/:userId" component={Authors}/>
+			<IndexRoute component={HomePage} />
+      <Route path="about" component={AboutPage}/>
+      <Route path="authors" component={AuthorPage}>
+        <Route path=":userId" component={AuthorDetails}/>
       </Route>
-      <Route path="*" component={Home}/>
+      <Route path="*" component={HomePage}/>
     </Route>
   </Router>
 ), document.getElementById('app'));
