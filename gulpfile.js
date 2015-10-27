@@ -82,11 +82,11 @@ gulp.task('js', function() {
   })
     .transform(reactify)
     .bundle()
-    .on('error', console.error.bind(console))
     .pipe(source('bundle.js'))
     .pipe(buffer()) //To work with Vinyl stream: https://wehavefaces.net/gulp-browserify-the-gulp-y-way-bb359b3f9623#.pi2bd7i1t
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(uglify()) // sourcemaps and uglify from https://github.com/gulpjs/gulp/blob/master/docs/recipes/browserify-uglify-sourcemap.md
+    .on('error', console.error.bind(console))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.paths.dist + '/scripts'))
     .pipe(gulpConnect.reload());
