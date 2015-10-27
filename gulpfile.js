@@ -50,7 +50,8 @@ gulp.task('connect', function() {
     root: ['dist'],
     port: config.port,
     base: config.developmentBaseUrl,
-    livereload: true
+    livereload: true,
+    fallback: './dist/index.html'
   });
 });
 
@@ -58,7 +59,7 @@ gulp.task('connect', function() {
 gulp.task('browser-sync', function() {
     browserSync.init({
         server: {
-            baseDir: "./dist"
+            baseDir: './dist'
         }
     });
 });
