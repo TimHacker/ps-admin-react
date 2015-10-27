@@ -4,6 +4,7 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var IndexRoute = ReactRouter.IndexRoute;
 var Route = ReactRouter.Route;
+var Redirect = ReactRouter.Redirect;
 
 var App = require('./components/app.jsx');
 var HomePage = require('./components/homePage.jsx');
@@ -19,6 +20,8 @@ var routes = (
     <Route path="authors" component={AuthorPage}>
       <Route path=":userId" component={AuthorDetails}/>
     </Route>
+    <Redirect from="about-us" to="about"/>
+    <Redirect from="about/*" to="about"/>
     <Route path="*" component={NotFoundPage}/>
   </Route>
 );
