@@ -10,6 +10,7 @@ var HomePage = require('./components/homePage.jsx');
 var AuthorPage = require('./components/authors/authorPage.jsx');
 var AuthorDetails = require('./components/authors/authorDetails.jsx');
 var AboutPage = require('./components/about/aboutPage.jsx');
+var NotFoundPage = require('./components/notFoundPage.jsx');
 
 var routes = (
   <Route path="/" component={App}>
@@ -18,7 +19,7 @@ var routes = (
     <Route path="authors" component={AuthorPage}>
       <Route path=":userId" component={AuthorDetails}/>
     </Route>
-    <Route path="*" component={HomePage}/>
+    <Route path="*" component={NotFoundPage}/>
   </Route>
 );
 
