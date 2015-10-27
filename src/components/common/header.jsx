@@ -2,19 +2,20 @@
 
 var React = require('react');
 var Link = require('react-router').Link;
+var IndexLink = require('react-router').IndexLink;
 
 var Header = React.createClass({
 	render: function() {
 		return (
 			<nav className="navbar navbar-default">
 				<div className="container-fluid">
-					<a href="/" className="navbar-brand">
+					<IndexLink to="/" className="navbar-brand">
 						<img className="navbar__site-logo" src="images/pluralsight-logo.png"></img>
-					</a>
+					</IndexLink>
 					<ul className="nav navbar-nav">
-						<li><Link to="/">Home</Link></li>
-						<li><Link to="/authors">Authors</Link></li>
-						<li><Link to="/about">About</Link></li>
+						<li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
+						<li><Link to="/authors" activeClassName="active">Authors</Link></li>
+						<li><Link to="/about" activeClassName="active">About</Link></li>
 					</ul>
 				</div>
 			</nav>
