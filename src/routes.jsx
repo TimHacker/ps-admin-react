@@ -13,10 +13,22 @@ var AuthorDetails = require('./components/authors/authorDetails.jsx');
 var AboutPage = require('./components/about/aboutPage.jsx');
 var NotFoundPage = require('./components/notFoundPage.jsx');
 
+function confirmNavigationTo(nextState, replaceState) {
+  if (!confirm('Are you sure you want to read a page that is this boring?')) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/');
+  }
+}
+
+function confirmNavigationAway() {
+  if (!confirm('Are you sure you want to leave a page that is this exciting?')) {
+    console.log('there you go!');
+  }
+}
+
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
-    <Route path="about" component={AboutPage}/>
+    <Route path="about" component={AboutPage} onEnter={confirmNavigationTo} onLeave={confirmNavigationAway}/>
     <Route path="authors" component={AuthorPage}>
       <Route path=":userId" component={AuthorDetails}/>
     </Route>
