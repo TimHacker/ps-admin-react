@@ -4,6 +4,12 @@ var React = require('react');
 var TextInput = require('../common/textInput.jsx');
 
 var AuthorForm = React.createClass({
+  propTypes: {
+    author: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired,
+    onSave: React.PropTypes.func.isRequired,
+    errors: React.PropTypes.object
+  },
   render: function() {
     return (
       <div>
