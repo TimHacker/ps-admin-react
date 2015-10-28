@@ -3,25 +3,30 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var History = ReactRouter.History;
+var Lifecycle = ReactRouter.Lifecycle;
 
 var AuthorForm = require('./authorForm.jsx');
 var AuthorApi = require('../../api/authorApi');
 var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
-  mixins: [ History ],
+  mixins: [ History, Lifecycle ],
 
   getInitialState: function() {
     return {
       author: { id: '', firstName: '', lastName: ''},
-      errors: {}
+      errors: {},
+      dirty: false
     };
   },
 
   setAuthorState: function(event) {
+    this.setState({dirty: true});
+
     var field = event.target.name;
     var value = event.target.value;
     this.state.author[field] = value;
+
     return this.setState({author: this.state.author});
   },
 
@@ -51,8 +56,15 @@ var ManageAuthorPage = React.createClass({
     }
 
     AuthorApi.saveAuthor(this.state.author);
+    this.setState({dirty: false});
     toastr.success('Author name: ' + this.state.author.firstName + ' ' + this.state.author.lastName, 'Successfully added author');
     this.history.pushState(null, '/authors');
+  },
+
+  routerWillLeave: function(nextLocation) {
+    if (this.state.dirty) {
+      return 'Your work is not saved! Are you sure you want to leave?';
+    }
   },
 
   render: function() {
