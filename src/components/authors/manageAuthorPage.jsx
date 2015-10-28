@@ -4,6 +4,7 @@ var React = require('react');
 var AuthorForm = require('./authorForm.jsx');
 var AuthorApi = require('../../api/authorApi');
 var History = require('react-router').History;
+var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
   mixins: [ History ],
@@ -24,6 +25,7 @@ var ManageAuthorPage = React.createClass({
   saveAuthor: function(event) {
     event.preventDefault();
     AuthorApi.saveAuthor(this.state.author);
+    toastr.success('Author name: ' + this.state.author.firstName + ' ' + this.state.author.lastName, 'Successfully added author');
     this.history.pushState(null, '/authors');
   },
 

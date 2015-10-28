@@ -49,6 +49,7 @@
     "react-router": "^1.0.0-rc3",
     "reactify": "^1.1.1",
     "stylelint": "^2.0.0",
+    "toastr": "^2.1.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   }
