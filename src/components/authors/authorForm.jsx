@@ -15,14 +15,12 @@ var AuthorForm = React.createClass({
             label="First Name"
             name="firstName"
             placeholder="Joe"
-            wrapperClass="form-group"
             value={this.props.author.firstName}
             onChange={this.props.onChange} />
           <TextInput
             label="Last Name"
             name="lastName"
             placeholder="Bloggs"
-            wrapperClass="form-group"
             value={this.props.author.lastName}
             onChange={this.props.onChange} />
           <input
