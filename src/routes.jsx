@@ -19,16 +19,10 @@ function confirmNavigationTo(nextState, replaceState) {
   }
 }
 
-function confirmNavigationAway() {
-  if (!confirm('Are you sure you want to leave a page that is this exciting?')) {
-    console.log('there you go!');
-  }
-}
-
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage} />
-    <Route path="about" component={AboutPage} onEnter={confirmNavigationTo} onLeave={confirmNavigationAway}/>
+    <Route path="about" component={AboutPage} onEnter={confirmNavigationTo} />
     <Route path="authors" component={AuthorPage}>
       <Route path=":userId" component={AuthorDetails}/>
     </Route>
