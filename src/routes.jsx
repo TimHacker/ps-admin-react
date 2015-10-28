@@ -25,8 +25,8 @@ var routes = (
     <IndexRoute component={HomePage} />
     <Route path="about" component={AboutPage} onEnter={confirmNavigationTo} />
     <Route path="authors" component={AuthorPage}>
-      <Route path=":userId" component={AuthorDetails}/>
     </Route>
+    <Route path="authors/:id" component={ManageAuthorPage}/>
     <Route path="author" component={ManageAuthorPage}/>
     <Redirect from="about-us" to="about"/>
     <Redirect from="about/*" to="about"/>
