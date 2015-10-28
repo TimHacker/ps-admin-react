@@ -64,7 +64,7 @@ var ManageAuthorPage = React.createClass({
     }
 
     AuthorApi.saveAuthor(this.state.author);
-    toastr.success('Author name: ' + this.state.author.firstName + ' ' + this.state.author.lastName, 'Successfully added author');
+    toastr.success('Author name: ' + this.state.author.firstName + ' ' + this.state.author.lastName, 'Successfully saved author');
 
     this.setState({dirty: false}, function() {
       this.history.pushState(null, '/authors');
