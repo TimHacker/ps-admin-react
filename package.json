@@ -40,6 +40,7 @@
     "history": "^1.12.6",
     "imagemin-pngquant": "^4.2.0",
     "jquery": "^2.1.4",
+    "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
     "object-assign": "^4.0.1",
     "postcss-bem-linter": "^2.0.0",
